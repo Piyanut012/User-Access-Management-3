@@ -10,3 +10,18 @@ Discretionary access control | Mandatory access control
 * Complain คือโหมดที่มีการรายงานเมื่อมีการละเมิดนโยบาย แต่ไม่มีการบังคับ
 
 AppArmor แตกต่างจากระบบ MAC อื่นๆ บน Linux สามารถผสม 2 โหมดเข้าด้วยกันได้ มีการใช้ไฟล์รวมเพื่อความสะดวกในการพัฒนาและมีปัญหาน้อยในการเข้าใช้เมื่อเทียบกับ MAC อื่นๆ
+### วิธิ้การใช้ AppArmor
+* ติดตั้ง AppArmor
+
+``` Bash
+sudo apt install apparmor-profiles
+```
+* การตรวจสอบสถานะของ AppArmor
+
+``` Bash
+sudo aa-status
+```
+ตัวอย่างผลลัพธ์
+
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/d6b9205e-1490-4233-842c-1d7311a78cd8)
+* /etc/apparmor.d คือที่ตั้งของโปรไฟล์ AppArmor สามารถใช้เพื่อจัดการโหมดของโปรไฟล์ทั้งหมดได้ 
