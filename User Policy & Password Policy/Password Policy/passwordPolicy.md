@@ -74,7 +74,10 @@ Password policy เป็นมาตรการสำคัญในด้า�
 
 ## อ้างอิง
 https://askubuntu.com/questions/244115/how-do-i-enforce-a-password-complexity-policy
+
 https://www.server-world.info/en/note?os=Ubuntu_20.04&p=password
+
 https://hostadvice.com/how-to/web-hosting/ubuntu/how-to-enable-and-enforce-secure-password-policies-on-ubuntu/
+
 https://discourse.ubuntu.com/t/user-management/11881
    
