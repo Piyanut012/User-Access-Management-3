@@ -71,4 +71,10 @@ Password policy เป็นมาตรการสำคัญในด้า�
    หากกรอกรหัสผ่านไม่ครบตามเงื่อนไขจะขึ้นผลลัพธ์ประมาณดังรูปเป็นอันสำเร็จ
 
    ![](https://github.com/Piyanut012/User-Access-Management-3/assets/112673913/7ea52833-6930-438c-973e-607a0f65ccd8)
+
+## อ้างอิง
+https://askubuntu.com/questions/244115/how-do-i-enforce-a-password-complexity-policy
+https://www.server-world.info/en/note?os=Ubuntu_20.04&p=password
+https://hostadvice.com/how-to/web-hosting/ubuntu/how-to-enable-and-enforce-secure-password-policies-on-ubuntu/
+https://discourse.ubuntu.com/t/user-management/11881
    
