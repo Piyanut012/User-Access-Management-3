@@ -32,42 +32,64 @@ sudo aa-status
 
 * **โปรไฟล์ AppArmor** เป็นไฟล์ข้อความธรรมดาที่อยู่ในรูปแบบ/etc/apparmor.d/. ไฟล์ต่างๆ มีการตั้งชื่อตามเส้นทาง 
  เช่น /etc/apparmor.d/bin.ping โดยมีองค์ประกอบ 2 อย่าง
-    * เส้นทางที่แอปพลิเคชันสามารถเข้าถึงได้ในระบบไฟล์
-    * กำหนดสิทธิ์ที่กระบวนการที่จำกัดได้รับอนุญาตให้ใช้
+    * เส้นทางที่ appication สามารถเข้าถึงได้ในระบบไฟล์ เช่น /path/to/test_app.sh
+    * กำหนดสิทธิ์ที่กระบวนการที่จำกัดได้รับอนุญาตให้ใช้ เช่นการอ่านไฟล์ เขียนไฟล์ เป็นต้น
 
-ตัวอย่าง /etc/apparmor.d/bin.ping
+### ตัวอย่างการสร้างโปรไฟล์
+* เริ่มจากสร้าง application ที่จะใช้ทดสอบ
 
-![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/4621a560-ae1a-4cf6-94d6-b9620be16ddd)
+ชื่อไฟล์คือ test_app.sh โดยมีฟังก์ชันสำหรับเขียนกับอ่านไฟล์
+ 
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/b1831dd6-849a-4c5b-ad1b-50682b8eaac5)
 
-**คำอธิบายบางส่วน** 
-* **#include <tunables/global>** รวมคำสั่งจากไฟล์อื่น ซึ่งช่วยให้สามารถวางคำสั่งที่เกี่ยวข้องกับหลายแอปพลิเคชันไว้ในไฟล์ทั่วไปได้
-* **/bin/ping flags=(complain)** เส้นทางไปยังโปรแกรมและการตั้งค่าโหมด complain ไว้
-* **capability net_raw** การอนุญาตให้แอปพลิเคชันเข้าถึงความสามารถ CAP_NET_RAW Posix.1e
-* **/bin/ping mixr** อนุญาตให้แอปพลิเคชันอ่านและดำเนินการเข้าถึงไฟล์
+ผลลัพธ์
 
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/b726b8f1-9d18-4642-b02b-c880058eaca2)
 
-#### การเปลื่ยนโหมด
-จากตัวอย่างข้างต้นลองเปลื่ยนโหมดเป็น enforce โดยใช้คำสั่ง
+* จากนั้นใช้คำสั้งสร้างโปรไฟล์
 
-``` Bash
-sudo aa-enforce /etc/apparmor.d/bin.ping
-```
+_แบบแรก_
 
-ผลลัพธ์คือ flags=(complain) หายไป
-
-![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/6ece5fd2-595d-460b-b95b-f7c620cde043)
-
-![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/d9884310-6e56-44f8-ae3e-b6820a8fcc7d)
-
-เปลื่ยนกลับมาเป็นโหมด complain
+แบบนี้จะสร้างให้อัตโนมัติ
 
 ``` Bash
-sudo aa-complain /etc/apparmor.d/bin.ping
+sudo aa-genprof test_app.sh
 ```
 
-![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/aad26a4c-b8c8-41f1-a6a1-2cb0a2e20f86)
+_เราจะใช้แบบที่สองกัน_
 
-ส่วนใหญ่เมื่อมีการละเมิดจะเก็บข้อมูลไว้ใน syslog หรือ audit log 
+สร้างพร้อมกับเขียนเส้นทางและการอนุญาติ
+
+``` Bash
+sudo nano /etc/apparmor.d/test_app_profile
+```
+
+![Screenshot 2024-02-08 003515](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/2f011331-630b-46f9-a737-e759e2aa6b34)
+
+จากนั้นเพิ่มโหมด complain ให้กับโปรไฟล์นี้
+
+``` Bash
+sudo aa-complain /etc/apparmor.d/test_app_profile
+```
+
+ผลลัพธ์
+
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/3ef30b7b-cdf1-4dfe-a45a-b2d465989be8)
+
+อธิบายการอนุญาติที่เขียนไว้
+* dac_override คือให้สิทธิ์ในการเขียนทับ directory นั้นๆ
+* dac_read_search คือให้สิทธิ์ในการค้นหาและอ่าน directory นั้นๆ
+* /test/test_file.txt rw คือให้สิทธิ์ในแอปพลิเคชันสามารถทำการเขียน (rw) ไฟล์ที่อยู่ใน /test/test_file.txt ได้
+
+### การทดสอบการใช้ระหว่างโหมด complain และ enforce
+* complain
+
+``` Bash
+sudo aa-complain /etc/apparmor.d/test_app_profile
+```
+
+
+
 
 
 
