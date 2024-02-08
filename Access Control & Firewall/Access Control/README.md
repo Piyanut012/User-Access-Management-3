@@ -4,7 +4,7 @@
 ## วิธีการทำ Acess Control
  * File permissions คือการใช้คำสั่ง ```chmod``` เพื่อกำหนดสิทธิ์ของ file และ directory โดยแบ่งออกเป็น 3 กลุ่มคือ เจ้าของ (owner), กลุ่ม (group) และสาธารณะ (others) โดยให้สิทธิ์ในการอ่าน, เขียน และดำเนินการกับ file และ directory นั้นๆ
  * User and Group Management คือ ผู้ดูแลระบบสามารถกำหนดว่าผู้ใช้แต่ละคนจะอยู่ในกลุ่มใดๆ และกำหนดสิทธิ์ของกลุ่มนั้นๆได้ เช่น ```useradd```, ```userdel```, ```usermod```, ```groupadd```เป็นต้น
- * Access Control Lists (ACLs)  คือการกำหนดสิทธิ์เพิ่มเติม โดยให้สิทธิ์ที่เฉพาะเจาะจงมากขึ้นกับ file หรือ directory โดยไม่ต้องเปลี่ยนความเป็นเจ้าและการอนุญาต ช่วยให้สามารถการเข้าถึงสำหรับผู้ใช้หรือกลุ่มอื่น เช่น การกำหนด ACL ให้กับ file หรือ directory ```setfacl -m u:username:rw filename`` เป็นต้น
+ * Access Control Lists (ACLs)  คือการกำหนดสิทธิ์เพิ่มเติม โดยให้สิทธิ์ที่เฉพาะเจาะจงมากขึ้นกับ file หรือ directory โดยไม่ต้องเปลี่ยนความเป็นเจ้าและการอนุญาต ช่วยให้สามารถการเข้าถึงสำหรับผู้ใช้หรือกลุ่มอื่น เช่น การกำหนด ACL ให้กับ file หรือ directory ```setfacl -m u:username:rw filename``` เป็นต้น
 
 ## ชนิดของการควบคุม
 Discretionary access control | Mandatory access control
