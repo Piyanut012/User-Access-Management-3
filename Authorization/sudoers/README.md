@@ -20,6 +20,6 @@ sudoers คือไฟล์ที่อยู่ใน */etc/sudoers* ทำ�
 ## References
 
 Ubuntu Official Document - https://help.ubuntu.com/community/Sudoers
-TechTarget Security - https://www.techtarget.com/searchsecurity/definition/sudo-superuser-do#:~:text=To%20use%20sudo%20to%20run,edit%20a%20system's%20host%20file.
-Hostinger Tutorials - https://www.hostinger.com/tutorials/sudo-and-the-sudoers-file/
+<br>TechTarget Security - https://www.techtarget.com/searchsecurity/definition/sudo-superuser-do#:~:text=To%20use%20sudo%20to%20run,edit%20a%20system's%20host%20file.
+<br>Hostinger Tutorials - https://www.hostinger.com/tutorials/sudo-and-the-sudoers-file/
 
