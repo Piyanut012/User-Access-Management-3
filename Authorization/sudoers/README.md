@@ -10,12 +10,107 @@
 
 sudoers คือไฟล์ที่อยู่ใน */etc/sudoers* ทำหน้าที่ config คำสั่ง sudo ว่าใครสามารถใช้คำสั่ง sudo ได้บ้าง
 
-***<span style="color:red">สำคัญ</span>***
+***สำคัญ***
 การแก้ไขไฟล์ sudo ต้องระวังอย่าให้มีข้อผิดพลาด หรือ syntax ที่ไม่ถูกต้องในไฟล์ไม่งั้นผู้ใช้ทั้งหมดอาจถูกล็อคออกไปจากระบบ
 
 ## sudoers File Syntax
 
+เราสามารถเปิดไฟล์ sudoers ได้ด้วยคำสั่ง
+
+``` Bash
+sudo vi /etc/sudoers
+```
+
+ไฟล์ sudoers จะมีลักษณะแบบนี้
+
 ![Image](../.assets/sudoers.png)
+
+มาสังเกต syntax จากรูปกัน
+- สัญลักษณ์ # คือ comment ยกเว้น # ที่เป็นส่วนหนึ่งของ #include หรือ #includedir
+- *root ALL=(ALL:ALL) ALL* บรรทัดนี้หมายถึงผู้ใช้ที่เป็น root นั้นมีสิทธ์ไม่จำกัดและสามารถเรียกใช้คำสั่งได้ทุกอย่างในระบบ
+- *%admin ALL=(ALL) ALL* % เป็นสัญลักษณ์ในการระบุ group สำหรับบรรทัดนี้นั้นหมายถึง ทุกคนใน group admin มีสิทธ์เทียบเท่า root
+- *%sudo ALL=(ALL:ALL) ALL* ผู้ใช้ทุกคนใน group sudo มีสิทธ์ที่จะเรียกใช้ทุกคำสั่งได้ 
+- @includedir หมายถึงเราสามารถเพิ่ม config ลงไปในไฟล์ sudoers.d และลิงค์มันมาที่นี่ได้
+
+## Editing the sudoers File
+
+ในการแก้ไขไฟล์ **/etc/sudoers** ใช้คำสั่งนี้
+
+``` Bash
+sudo visudo -f /etc/sudoers
+```
+
+ที่แนะนำให้ใช้ visudo ในการแก้ไขไฟล์ sudoers นั้นเพราะว่า Visudo ทำให้เรามั่นใจได้ว่าไฟล์ sudoers สามารถแก้ไขพร้อมกันได้แค่ user เดียว และมีการตรวจสอบ syntax ให้
+
+<br><br>
+
+เพื่อตรวจสอบผู้ใช้ที่อยู่ใน group sudo เราสามารถใช้คำสั่ง **grep** ได้
+
+``` Bash
+grep 'sudo' /etc/group
+```
+
+คำสั่งนี้จะแสดงรายการชื่อผู้ใช้ที่อยู่ใน group sudo
+
+<br><br>
+
+ในการเพิ่ม user ลงใน group sudo สมมุติว่าเราต้องการเพิ่ม user ที่ชื่อว่า john ลงใน group เราจะใช้คำสั่ง **adduser** ใน Terminal ดังนี้
+
+``` Bash
+sudo adduser bill sudo
+```
+
+ถ้าเราใช้คำสั่ง grep เพื่อตรวจสอบว่าใครอยู่ใน group sudo บ้าง เราจะเห็น username ที่ชื่อว่า john อยู่ในนั้น
+
+<br><br>
+
+ต่อมาการลบ user ออกจาก group sudo สามารถทำได้ดังนี้
+
+``` Bash
+sudo deluser bill sudo
+```
+
+เพียงเท่านี้ john ก็จะถูกลบออกจาก group และ john ก็จะไม่สามารถใช้งานคำสั่งที่ต้องการสิทธ์ sudo ได้อีกต่อไป
+
+## Grant Specific Privileges Using sudoers
+
+สมมุติว่าเราต้องการให้ john นั้นสามารถเรียกใช้คำสั่งที่ต้องใช้สิทธ์ sudo ได้แค่บางคำสั่งแต่ไม่ทั้งหมดล่ะ เช่น คำสั่งที่เกี่ยวกับ network
+
+<br><br>
+
+วิธีการก็แค่เราสร้างไฟล์ config ใน 
+**/etc/sudoers.d/** ชื่อว่า networking โดยใช้คำสั่งดังนี้
+
+``` Bash
+sudo visudo -f /etc/sudoers.d/networking
+```
+
+จากนั้นใส่คำสั่งด้านล่างนี้ลงไปในไฟล์
+
+``` Bash
+Cmnd_Alias     CAPTURE = /usr/sbin/tcpdump
+Cmnd_Alias     SERVERS = /usr/sbin apache2ctl, /usr/bin/htpasswd
+Cmnd_Alias     NETALL = CAPTURE, SERVERS
+%netadmin ALL=NETALL
+```
+
+และใช้คำสั่งนี้ใน Terminal
+
+``` Bash
+addgroup netadmin
+```
+
+สิ่งที่เราได้ทำไปก็คือการสร้าง group netadmin และให้ผู้ใช้ใน group นั้นสามารถเรียกใช้คำสั่งที่ระบุไว้ใน NETALL ซึ่งใน NETALL นั้นมีคำสั่งทั้งหมดที่อยู่ใน alias CAPTURE กับ SERVERS อย่างคำสั่งที่เราใส่เข้าไปใน alias CAPTURE คือคำสั่ง tcpdump ที่อยู่ใน **/usr/sbin/tcpdump**
+
+<br><br>
+
+เหลือเพียงแค่เพิ่ม john ลงไปใน group netadmin
+
+``` Bash
+sudo adduser bill netadmin
+```
+
+เพียงเท่านี้ john ก็สามารถเรียกใช้คำสั่ง tcpdump ไปพร้อม ๆ กับคำสั่งอื่นที่เกี่ยวข้องกับ network ได้แล้ว
 
 ## References
 
