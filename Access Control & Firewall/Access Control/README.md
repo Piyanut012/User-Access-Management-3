@@ -133,8 +133,8 @@ _สังเกตว่าจะไม่ถูกปฏิเสธ แต่
 ## แหล่งอ้างอิง
 * [4. Access Control - Learning Modern Linux [Book]](https://www.oreilly.com/library/view/learning-modern-linux/9781098108939/ch04.html)
 * [Set Linux Permissions and Access Control Lists | Computer Networks | CompTIA](https://www.comptia.org/blog/set-linux-permissions-and-access-control-lists)
-* [AppArmor - Ubuntu Wiki](https://wiki.ubuntu.com/AppArmorwiki.ubuntu.com)
-* [Security - AppArmor | Ubuntu](https://ubuntu.com/server/docs/security-apparmorubuntu.com)
+* [AppArmor - Ubuntu Wiki](https://wiki.ubuntu.com/AppArmor)
+* [Security - AppArmor | Ubuntu](https://ubuntu.com/server/docs/security-apparmor)
 * [Securing Applications with Apparmor](https://www.youtube.com/watch?v=0t-UZFBNyF0)
 
 
