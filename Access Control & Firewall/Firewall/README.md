@@ -137,9 +137,12 @@ sudo ufw reset
 
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/110012203/cb69a59b-1f75-43bc-b5ad-d0cee138f711)
 
-
-#Iptables
-Iptables คือ 
+## Reference
+* [Security - Firewall | Ubuntu](https://ubuntu.com/server/docs/security-firewallubuntu.com)
+* [How to Configure a Linux Firewall: Complete Guide | NinjaOne](https://www.ninjaone.com/blog/how-to-configure-a-linux-firewall/www.ninjaone.com)
+* [UFW - Community Help Wiki](https://help.ubuntu.com/community/UFWhelp.ubuntu.com)
+* [ใช้งาน firewall บน ubuntu แบบง่ายๆ ด้วย ufw | by Titipat | Medium](https://titipat.medium.com/%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99-firewall-%E0%B8%9A%E0%B8%99-ubuntu-%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%87%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%86-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-ufw-9f39119a094btitipat.medium.com)
+* [วิธีตั้งค่า UFW Firewall บน Ubuntu และ Debian](https://th.linux-console.net/?p=284th.linux-console.net)
 
 
 
