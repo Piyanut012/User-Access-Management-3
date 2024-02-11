@@ -118,6 +118,8 @@ chown owner_name file_name
 chown master file1.txt
 ```
 
+<br><br>
+
 2. Change the Group
 
 เปลี่ยน group เจ้าของของไฟล์ได้ดังนี้
@@ -132,6 +134,8 @@ chown :group1 file1.txt
 
 เราจะใช้ : แล้วตามด้วยชื่อ group owner ใหม่
 
+<br><br>
+
 3. Change Owner and Group of the File
 
 เปลี่ยน user เจ้าของและ group เจ้าของของไฟล์ได้ดังนี้
@@ -145,6 +149,8 @@ chown master:group1 file1.txt
 ```
 
 เราจะใช้ : ในการแบ่งระหว่าง user owner กับ group owner
+
+<br><br>
 
 4. Change Owner of Multiple Files
 
