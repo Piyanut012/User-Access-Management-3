@@ -92,3 +92,5 @@ SSH มาเป็นโซลูชันที่เข้ารหัสข�
 ``` Bash
 ssh KenBrain@SSHserver.KenHint.com
 ```
+
+Thank you for refference : https://linuxhint.com/linux-authentication-systems/
