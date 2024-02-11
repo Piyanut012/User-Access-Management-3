@@ -93,4 +93,202 @@ SSH มาเป็นโซลูชันที่เข้ารหัสข�
 ssh KenBrain@SSHserver.KenHint.com
 ```
 
-Thank you for refference : https://linuxhint.com/linux-authentication-systems/
+# pam.d
+**pam.conf** เป็นไฟล์การกำหนดค่าแบบดั้งเดิมสำหรับสถาปัตยกรรม Pluggable Authentication Module หรือ PAM ไฟล์นโยบายต่อบริการใน /etc/pam.d/ จัดเตรียมกลไกการกำหนดค่าทางเลือกและที่ต้องการสำหรับ PAM
+``` Bash
+/etc/pam.conf
+/etc/pam.d/service
+```
+การกำหนดค่า PAM ในไฟล์ต่อไปนี้ :
+* **/etc/pam.conf สำหรับชื่อบริการ PAM ปัจจุบัน**
+* **/etc/pam.d/service สำหรับชื่อบริการ PAM ปัจจุบัน**
+* **/etc/pam.conf สำหรับชื่อบริการ PAM ของ “other”**
+* **/etc/pam.d/other**
+
+# PAM Configuration File Syntax
+ไฟล์ pam.conf มีรายการบริการ แต่ละบริการจะจับคู่กับโมดูลบริการที่เกี่ยวข้อง เมื่อมีการร้องขอบริการ โมดูลที่เกี่ยวข้องจะถูกเรียกใช้ แต่ละรายการมีความยาวได้สูงสุด 256 อักขระรวมจุดสิ้นสุดบรรทัด และต้องเป็นหนึ่งในสองรูปแบบต่อไปนี้:
+``` Bash
+service_name module_type control_flag module_path options
+service_name module_type include path-to-included-PAM-configuration
+```
+ไฟล์นโยบายต่อบริการใน /etc/pam.d/ มีไวยากรณ์เกือบจะเหมือนกับ pam.conf; อย่างไรก็ตาม มีเพียงสี่ฟิลด์แทนที่จะเป็นห้าฟิลด์ใน pam.conf: ไม่มีฟิลด์ service_name service_name นำมาจากชื่อของไฟล์นโยบายใน /etc/pam.d/ แทน สองรูปแบบที่อนุญาตสำหรับรายการในไฟล์นโยบายต่อบริการคือ:
+``` Bash
+module_type control_flag module_path options
+module_type include path-to-included-PAM-configuration
+```
+ตัวอย่างของไฟล์การกำหนดค่า pam.conf ที่รองรับการตรวจสอบสิทธิ์ การจัดการบัญชี การจัดการเซสชัน และโมดูลการจัดการรหัสผ่าน:
+``` Bash
+login   auth requisite          pam_authtok_get.so.1
+login   auth required           pam_unix_auth.so.1
+
+other   account requisite       pam_roles.so.1
+other   account required        pam_unix_account.so.1
+
+other   session required        pam_unix_session.so.1
+
+other   password requisite      pam_authtok_get.so.1
+other   password requisite      pam_authtok_check.so.1
+other   password required       pam_authtok_store.so.1
+```
+การกำหนดค่า PAM ที่เทียบเท่าใน /etc/pam.d/ จะเป็นรายการต่อไปนี้ใน /etc/pam.d/login:
+``` Bash
+auth requisite	       pam_authtok_get.so.1
+auth required	       pam_unix_auth.so.1
+```
+และรายการต่อไปนี้ใน /etc/pam.d/other:
+``` Bash
+account requisite       pam_roles.so.1
+account required	    pam_unix_account.so.1
+
+session required	    pam_unix_session.so.1
+
+password	requisite      pam_authtok_get.so.1
+password	requisite      pam_authtok_check.so.1
+password	required       pam_authtok_store.so.1
+```
+# Integrating Multiple Authentication Services With Stacking
+เมื่อมีการกำหนด service_name ของ module_type เดียวกันมากกว่าหนึ่งครั้ง บริการดังกล่าวจะถูกซ้อนกัน แต่ละโมดูลที่อ้างอิงใน module_path สำหรับบริการนั้นจะถูกประมวลผลตามลำดับที่ปรากฏในไฟล์คอนฟิกูเรชัน ฟิลด์ control_flag ระบุซีแมนทิกส์ความต่อเนื่องและความล้มเหลวของโมดูล และสามารถมีค่าใดค่าหนึ่ง
+
+ตัวอย่างไฟล์การกำหนดค่าที่ซ้อนบริการ su, เข้าสู่ระบบและ rlogin.
+``` Bash
+su     auth required       pam_inhouse.so.1
+su     auth requisite      pam_authtok_get.so.1
+su     auth required       pam_unix_auth.so.1
+
+login   auth requisite     pam_authtok_get.so.1
+login   auth required      pam_unix_auth.so.1
+login   auth optional      pam_inhouse.so.1
+
+rlogin  auth sufficient    pam_rhosts_auth.so.1
+rlogin  auth requisite     pam_authtok_get.so.1
+rlogin  auth required      pam_unix_auth.so.1
+```
+การกำหนดค่า PAM ที่เทียบเท่าใน /etc/pam.d/ จะเป็นรายการต่อไปนี้ใน /etc/pam.d/su:
+``` Bash
+auth required	   pam_inhouse.so.1
+auth requisite	   pam_authtok_get.so.1
+auth required     pam_unix_auth.so.1
+```
+รายการต่อไปนี้ใน /etc/pam.d/login:
+``` Bash
+auth requisite    pam_authtok_get.so.1
+auth required     pam_unix_auth.so.1
+auth optional     pam_inhouse.so.1
+```
+และรายการต่อไปนี้ใน /etc/pam.d/rlogin:
+``` Bash
+auth sufficient   pam_rhosts_auth.so.1
+auth requisite    pam_authtok_get.so.1
+auth required     pam_unix_auth.so.1
+```
+# Utilities and Files
+ชื่อบริการและประเภทโมดูลเฉพาะสำหรับแต่ละบริการควรได้รับการบันทึกไว้ใน man page ของบริการนั้น ตัวอย่างเช่น man page sshd(8) แสดงรายการชื่อบริการ PAM และประเภทโมดูลทั้งหมดสำหรับคำสั่ง sshd
+
+ไฟล์การกำหนดค่า PAM ไม่ได้กำหนดชื่อหรือตำแหน่งของโมดูลเฉพาะบริการ อย่างไรก็ตาม อนุสัญญามีดังต่อไปนี้:
+* pam_module_name.so.x : 
+ไฟล์ที่ใช้ฟังก์ชันต่างๆ ของบริการตรวจสอบสิทธิ์เฉพาะ ตามที่ระบุชื่อพาธสัมพัทธ์ /usr/lib/security/$ISA จะถูกเติมไว้ข้างหน้า
+
+* /etc/pam.conf : 
+ไฟล์การกำหนดค่า PAM แบบดั้งเดิม
+
+* /etc/pam.d/service : 
+ไฟล์การกำหนดค่า PAM สำรอง
+
+* /usr/lib/$ISA/libpam.so.1 : 
+ไฟล์ที่ใช้ไลบรารีกรอบงาน PAM
+
+#Example
+การใช้แฟล็กควบคุมรวม
+ตัวอย่างต่อไปนี้รวบรวมโมดูล UNIX ทั่วไปเป็นไฟล์เดียวเพื่อรวมไว้ตามความจำเป็นในตัวอย่างของไฟล์ pam.conf ไฟล์โมดูล UNIX ทั่วไปมีชื่อว่า unix_common และประกอบด้วย:
+``` Bash
+OTHER   auth requisite          pam_authtok_get.so.1
+OTHER   auth required           pam_dhkeys.so.1
+OTHER   auth required           pam_unix_auth.so.1
+OTHER   auth required           pam_unix_cred.so.1
+OTHER   account requisite       pam_roles.so.1
+OTHER   account required        pam_unix_account.so.1
+OTHER   session required        pam_unix_session.so.1
+OTHER   password required       pam_dhkeys.so.1
+OTHER   password requisite      pam_authtok_get.so.1
+OTHER   password requisite      pam_authtok_check.so.1
+OTHER   password required       pam_authtok_store.so.1
+```
+ไฟล์ pam.conf ประกอบด้วย:
+``` Bash
+# Authentication management
+#
+# login service
+#
+login   auth include            unix_common
+#
+# rlogin service (explicit because of pam_rhost_auth)
+#
+rlogin  auth sufficient         pam_rhosts_auth.so.1
+rlogin  auth include            unix_common
+#
+# Default definitions for Authentication management
+# Used when service name is not explicitly mentioned
+#
+OTHER   auth include            unix_common
+#
+# Default definition for Account management
+# Used when service name is not explicitly mentioned
+#
+OTHER   account include	     unix_common
+#
+# Default definition for Session management
+# Used when service name is not explicitly mentioned
+#
+OTHER   session include         unix_common
+#
+# Default definition for  Password management
+# Used when service name is not explicitly mentioned
+#
+OTHER   password include        unix_common
+```
+การกำหนดค่า PAM ที่เทียบเท่าใน /etc/pam.d/ จะเป็นรายการต่อไปนี้ใน /etc/pam.d/login:
+``` Bash
+# Authentication        management
+#
+# login service
+#
+auth include           unix_common
+``` 
+รายการต่อไปนี้ใน /etc/pam.d/rlogin:
+``` Bash
+#
+# rlogin        service (explicit because of pam_rhost_auth)
+#
+auth sufficient        pam_rhosts_auth.so.1
+auth include           unix_common
+``` 
+และรายการต่อไปนี้ใน /etc/pam.d/OTHER:
+``` Bash
+#
+# Default definitions for Authentication management
+# Used when service name is not explicitly mentioned
+#
+auth include           unix_common
+#
+# Default definition for Account management
+# Used when service name is not explicitly mentioned
+#
+account include      unix_common
+#
+# Default definition for Session management
+# Used when service name is not explicitly mentioned
+#
+session include        unix_common
+#
+# Default definition for Password management
+# Used when service name is not explicitly mentioned
+#
+password        include        unix_common
+```
+
+/etc/pam.conf จัดส่งในแพ็คเกจ system/core-os
+
+ไฟล์ /etc/pam.d/ จะถูกส่งมาในแพ็คเกจที่มีโมดูลหรือซอฟต์แวร์ที่เกี่ยวข้องกัน
+
+
+Thank you for refference : https://linuxhint.com/linux-authentication-systems/ , https://docs.oracle.com/cd/E88353_01/html/E37852/pam.d-5.html
