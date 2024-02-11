@@ -10,7 +10,7 @@
   การสร้างและจัดการบัญชีผู้ใช้นั้นมีแค่ root ที่สามารถทำได้ดังนั้นจำเป็นต้องเข้าสู่ระบบในฐานะ root 
 โดยใช้ คำสัง sudo -i ใน terminal จากนั้นใส่รหัสผ่าน
 
-ใช้คำสั่ง useradd </username/> เช่น
+ใช้คำสั่ง useradd username เช่น
 ``` bash
 useradd ironman
 ```
@@ -22,14 +22,14 @@ cat /etc/passwd
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/1f1c47f4-c584-4f1d-ab2d-426e5bf16ddb)
 
 ## การตั้งรหัสผ่านผู้ใช้
-ใช้คำสั่ง passwd <username> เช่น
+ใช้คำสั่ง passwd username เช่น
 ``` bash
 passwd ironman
 ```
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/36202829-b376-4fd8-ae42-3a49a0ca2344)
 
 ## การลบผู้ใช้
-ใช้คำสั่ง useradd <username> เช่น
+ใช้คำสั่ง userdel username เช่น
 ``` bash
 userdel ironman
 ```
@@ -92,7 +92,7 @@ useradd -m -d /home/tony -s /bin/bash -u 3000 ironman
 แต่ละผู้ใช้ในระบบ Linux จะมี Primary Group ที่เป็นกลุ่มหลักของตนเอง มักจะมีชื่อเดียวกับผู้ใช้เองและมีกลุ่ม ID (GID) เฉพาะของตัวเอง
 * **Secondary/Supplementary group** -> คือกลุ่มอื่นๆ ที่ userอยู่นอกเหนือจาก Primary group ผู้ใช้ในระบบ Linux สามารถเป็นสมาชิกของ Supplementary group ได้หลายกลุ่ม
 
-ใช้คำสั่ง groups <username> เพื่อดูกลุ่มของผู้ใช้ เช่น
+ใช้คำสั่ง groups username เพื่อดูกลุ่มของผู้ใช้ เช่น
 ``` bash
 groups ironman
 ```
@@ -102,7 +102,7 @@ groups ironman
 
 
 ## การสร้างกลุ่ม
-ใช้คำสั่ง groupadd <groupname> เช่น
+ใช้คำสั่ง groupadd groupname เช่น
 ``` bash
 groupadd Avengers
 ```
@@ -115,7 +115,7 @@ cat /etc/group
 ## การเพิ่มผู้ใช้ลงในกลุ่ม
 สามารถใช้คำสั่ง usermod 
 ### เปลี่ยน Primary group ของผู้ใช้
-ใช้คำสั่ง usermod -g <groupname> <username>
+ใช้คำสั่ง usermod -g groupname username
 ``` bash
 usermod -g Avengers ironman
 ```
@@ -127,7 +127,7 @@ usermod -g Avengers ironman
 ### เปลี่ยน Secondary group ของผู้ใช้
 หากผู้ใช้ไม่มี Secondary group จะเป็นการเพิ่มผู้ใช้ลง Secondary group
 แต่หากผู้ใช้มี Secondary group อยู่แล้ว จะเป็นการเปลี่ยน Secondary group ของผู้ใช้
-ใช้คำสั่ง useradd -G <groupname> <username> เช่น
+ใช้คำสั่ง useradd -G groupname username เช่น
 ``` bash
  usermod -G guardians ironman
 ```
@@ -135,16 +135,16 @@ usermod -g Avengers ironman
 
 ### เพิ่ม Secondary group ของผู้ใช้
 จะเป็นการเพิ่มผู้ใช้ลงกลุ่มต่าง ๆ
-ใช้คำสั่ง useradd -aG <groupname> <username> เช่น
+ใช้คำสั่ง useradd -aG groupname username เช่น
 ``` bash
 usermod -aG scientist ironman
 ```
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/38272506-5224-454c-b3e8-7e443c9a5294)
 
-หรือใช้คำสั่ง gpasswd -a <username> <groupname> 
+หรือใช้คำสั่ง gpasswd -a username groupname
 
 ### ลบผู้ใช้จาก Secondary group
-ใช้คำสั่ง gpasswd -d <username> <groupname> เช่น
+ใช้คำสั่ง gpasswd -d username groupname เช่น
 
 ``` bash
 gpasswd -d ironman guardians
@@ -152,7 +152,7 @@ gpasswd -d ironman guardians
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/3aeb5a91-fc73-42f2-8495-52a202e3c243)
 
 ### การลบกลุ่ม
-ใช้คำสั่ง groupdel <groupname> เช่น
+ใช้คำสั่ง groupdel groupname เช่น
 ``` bash
  groupdel guardians
 ```
@@ -202,14 +202,14 @@ Options:
 # ตัวอย่างการใช้ usermod
 
 ## เพิ่ม comment -c
-ใช้คำสั่ง Usermod -c <comment> <username> 
+ใช้คำสั่ง Usermod -c comment username
 ``` bash
 usermod -c "Tony Stark" ironman
 ```
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/93f97e4a-0b75-422a-84d9-a40fbfaad76a)
 
 ## -L lock user
-ใช้คำสั่ง usermod -L <username> เช่น
+ใช้คำสั่ง usermod -L username เช่น
 ``` bash
 usermod -L ironman
 ```
@@ -217,7 +217,7 @@ usermod -L ironman
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/605e5331-a8b6-461c-94b2-f0e70a577005)
 
 ## -U unlock
-ใช้คำสั่ง usermod -U <username> เช่น
+ใช้คำสั่ง usermod -U username เช่น
 ``` bash
 usermod -U ironman
 ```
