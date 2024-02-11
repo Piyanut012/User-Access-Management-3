@@ -43,32 +43,33 @@ setfacl จะใช้ได้ก็ต่อเมื่อเป็นเจ
 <br><br>
 
 # Options Available and Syntax
-| Option       | Description                                                    |
+| Option       | คำอธิบาย                                                    |
 |--------------|----------------------------------------------------------------|
-| -m, --modify | For modifying the ACL.                                         |
-| -x, --remove | For removing the permission from the ACL.                      |
-| -b, --remove-all | For removing all permissions from the ACL.                |
-| -d, --default | Apply default permissions to newly created files and folders along the route. |
-| -R, --recursive | Recursively apply modifications to all files and directories in the given path. |
-| -k, --remove-default | Remove a file or directory’s default entry from the ACL. |
-| -n, --no-mask | Recalculating the effective rights mask using ACL entries is not permitted. |
-| -m, --mask | For specifying the effective right mask for modifying ACL. |
-| -M, --restore=file | For restoring ACL from a specific file. |
-| -set file | For applying the permission to specific files or directories. |
+| -m, --modify | สำหรับแก้ไข ACL                                       |
+| -x, --remove | ลบสิทธิ์จาก ACL                   |
+| -b, --remove-all | ลบสิทธิ์ทั้งหมดจาก ACL               |
+| -d, --default | เพิ่มสิทธิ์ตั้งต้นสำหรับ Files และ Folders ที่สร้างใหม่ใน Route นั้นๆ |
+| -R, --recursive | ทำให้การแก้ไขทั้งหมดส่งผลย้อนหลังกับ Files และ Directries ทั้งหมดใน Path นั้นๆ  |
+| -k, --remove-default | ลบบันทึกตั้งต้นของ File หรือ Directory จาก ACL |
+| -n, --no-mask | ไม่อนุญาตให้คำนวณ effective rights mask โดยใช้บันทึกจาก ACL |
+| -m, --mask | สำหรับกำหนด effective rights mask ในการแก้ไข  ACL |
+| -M, --restore=file | สำหรับกู้คืน ACL จาก File นั้นๆ |
+| -set file | สำหรับการเพิ่มสิทธิ์ให้กับ Files หรือ Directories ที่ระบุ |
 
 file_owner: file-owner มีอยู่ 3 ประเภท:
-| Type | Description                                             |
+| ประเภท | คำอธิบาย                                             |
 |------|---------------------------------------------------------|
-| 'u'  | Specify the name of the User/Owner for configuring the ACL |
-| 'g'  | Specify the name of the Group for configuring the ACL  |
-| 'o'  | Specify the name of Other for configuring the ACL      |
+| 'u'  | ระบุ User/Owner สำหรับการกำหนด ACL |
+| 'g'  | ระบุ Group สำหรับการกำหนด ACL  |
+| 'o'  | ระบุ Other (คนอื่นๆ) สำหรับการกำหนด ACL      |
 
 file_permission: file-permission มีอยู่ 3 ประเภท:
-| Type | Description                                       |
+| ประเภท | คำอธิบาย                                       |
 |------|---------------------------------------------------|
-| 'r'  | For read, it will allow the user to access the file. |
-| 'w'  | For writing, it will allow the user to make modifications or changes in the file. |
-| 'x'  | For execution, it will allow the user to execute or run the file. |
+| 'r'  | สำหรับการอ่าน (read) คืออนุญาตให้ User เข้าถึง File ได้ |
+| 'w'  | สำหรับการเขียน (write) คืออนุญาตให้ User แก้ไขและเปลี่ยนแปลงใน File ได้ |
+| 'x'  | สำหรับการใช้งาน (execute) คืออนุญาตให้ User เรียกใช้ File ได้ |
+
 
 ***ตัวอย่าง***
 
