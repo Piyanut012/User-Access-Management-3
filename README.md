@@ -32,7 +32,7 @@ Linux เก็บข้อมูลของผู้ใช้และกล�
 | ![guy-rounded'](https://github.com/Piyanut012/User-Access-Management-3/assets/86822195/0ebf40d9-345d-4acd-bf16-bd30d730b09f) | `65070181` | นายภูริพัทธ์ ชนะภัย | Add/Delete/Mod Users/Groups
 | ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/109953139/b116909f-6a64-4f1c-baf9-1dc86d01543a) | `65070190` | นายมานัส ถนอมรอด | Authentication/IDM/SSO
 | ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/109953139/81d0fc1c-f9ab-4580-a38b-c86855d2887c) | `65070191` | นายเมธัส พุ่มพวง | Authentication/IDM/SSO
-| `65070229` | นายสพณทร บุญกรไกรฤกษ์ | User Policy/Authorization
+| ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/109953139/2eed1471-ec05-49b6-9277-edd191a172ac) | `65070229` | นายสพณทร บุญกรไกรฤกษ์ | User Policy/Authorization
 | ![me-rounded](https://github.com/Piyanut012/User-Access-Management-3/assets/86822195/97abda6b-61dd-4f97-832e-674cda1003b5) | `65070232` | นายสหชินเดช เกตุดี | Authorization
 
 
