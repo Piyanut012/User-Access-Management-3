@@ -252,7 +252,8 @@ groupmod -n newavengers avengers
 ใช้คำสั่ง groupmod -g GID groupname เช่น
 ``` bash
 groupmod -n 2000 newavengers
-``
+```
+
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/e9a50f62-c979-491e-91ae-a925a47c9d0a)
 
 
