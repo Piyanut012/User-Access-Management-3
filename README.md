@@ -30,8 +30,8 @@ Linux เก็บข้อมูลของผู้ใช้และกล�
 | `65070138` | นายปิยณัฐ โรจน์เจริญทรัพย์ | Access Control, Firewall
 | `65070149` | นายพริษฐ์ ชมภูบุตร | Password Policy
 | `65070181` | นายภูริพัทธ์ ชนะภัย | Add/Delete/Mod Users/Groups
-| `65070190` | นายมานัส ถนอมรอด | Authentication/IDM/SSO
-| ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/109953139/81d0fc1c-f9ab-4580-a38b-c86855d2887c)| `65070191` | นายเมธัส พุ่มพวง | Authentication/IDM/SSO
+| ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/109953139/b116909f-6a64-4f1c-baf9-1dc86d01543a) | `65070190` | นายมานัส ถนอมรอด | Authentication/IDM/SSO
+| ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/109953139/81d0fc1c-f9ab-4580-a38b-c86855d2887c) | `65070191` | นายเมธัส พุ่มพวง | Authentication/IDM/SSO
 | `65070229` | นายสพณทร บุญกรไกรฤกษ์ | User Policy/Authorization
 | `65070232` | นายสหชินเดช เกตุดี | Authorization
 
