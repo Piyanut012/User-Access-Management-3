@@ -253,7 +253,7 @@ groupmod -n newavengers avengers
 ``` bash
 groupmod -n 2000 newavengers
 ``
-![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/dd14600e-00d8-4977-9b73-fd6e270d13a9)
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/e9a50f62-c979-491e-91ae-a925a47c9d0a)
 
 
 
