@@ -52,6 +52,8 @@ file_permission: file-permission มีอยู่ 3 ประเภท:
 setfacl -m u:kali:rw gfg.txt
 setfacl -m u:kali:rw gfg.txt
 ```
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118057837/f052ed9c-8146-41b1-bd56-16fbcd6c56a3)
+
 ## ขั้นตอนที่ 2: กำหนดสิทธิ์ให้แก่ผู้ใช้สำหรับไฟล์และไดเรกทอรีหลายๆ รายการ
 
 เนื่องจากเรามีข้อดีของคำสั่ง setfacl เราสามารถกำหนดสิทธิ์บนไฟล์และไดเรกทอรีหลายๆ รายการพร้อมกัน
@@ -60,6 +62,9 @@ setfacl -m u:kali:rw gfg.txt
 setfacl -m u:kali:rx f1.txt f2.txt d1
 setfacl2
 ```
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118057837/b4c72084-02a7-4493-bd1a-5214ac58cccd)
+
+
 ## ขั้นตอนที่ 3: ปฏิเสธสิทธิ์ทั้งหมดบนไดเรกทอรีที่ระบุ
 
 เราสามารถลบสิทธิ์ ACL โดยใช้ตัวเลือก (-x) พร้อมกับการระบุประเภทผู้ใช้และชื่อไฟล์หรือไดเรกทอรี
@@ -67,6 +72,7 @@ setfacl2
 setfacl -x u:kali d1
 setfacl3
 ```
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118057837/696477a7-2a1e-48aa-819b-5f91fc83b8ea)
 ## ขั้นตอนที่ 4: แสดงรายการควบคุมการเข้าถึงไฟล์
 
 ใช้เพื่อแสดงรายละเอียดของ ACL บนไฟล์หรือไดเรกทอรีที่ระบุ ประกอบด้วยข้อมูลเช่น ชื่อไฟล์, เจ้าของและชื่อกลุ่ม, สิทธิ์ไฟล์, และ umask
@@ -74,12 +80,17 @@ setfacl3
 getfacl -a f2.txt
 aagetfacl1
 ```
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118057837/d032fedd-f455-4b55-b7ba-f731f9e8e4cb)
+
+
 ## ขั้นตอนที่ 5: แสดงรายการควบคุมการเข้าถึงเริ่มต้น
 
 ใช้เพื่อแสดงข้อมูลพื้นฐานเช่น ชื่อไฟล์ และ ชื่อเจ้าของ/กลุ่ม
 ```bash
 getfacl -d f2.txt
 ```
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118057837/53c573cd-2c36-49de-99bb-49a7be96af05)
+
 ---
 
 ### อ้างอิง
