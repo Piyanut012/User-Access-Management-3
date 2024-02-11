@@ -167,3 +167,8 @@ chown master:group1 file1.txt file2.txt
 ![Image](../.assets/-v%20multi.png)
 
 เท่านี้เราก็สามารถเปลี่ยน user และ group เจ้าของไฟล์เป็นกันแล้ว!
+
+<br><br>
+
+## References
+* [GeeksForGeeks](https://www.geeksforgeeks.org/chown-command-in-linux-with-examples/)
