@@ -22,3 +22,5 @@ setfacl จะใช้ได้ก็ต่อเมื่อเป็นเจ
 
 ### อ้างอิง
 https://www.geeksforgeeks.org/linux-setfacl-command-with-example/
+
+https://www.ibm.com/docs/en/zos/3.1.0?topic=scd-setfacl-set-remove-change-access-control-lists-acls
