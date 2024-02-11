@@ -1,4 +1,4 @@
-# User authorization with chown
+# User Authorization with chown
 
 ## Understanding User Ownership and Permission in Linux
 
