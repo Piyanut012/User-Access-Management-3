@@ -258,13 +258,13 @@ groupmod -n 2000 newavengers
 
 
 
-
-
-
-
-
-
-
+# Reference
+https://saixiii.com/groups-linux-command/
+https://youtu.be/19WOD84JFxA?si=QB8o0eLBt7IaE0U2
+https://youtu.be/iXUHWtgzPMY?si=HJzkgMGCgxuz6R97
+https://drive.google.com/file/d/0B6lwIJrH_EH4bGFqa0ZmSkl5SDA/view?resourcekey=0-S1J8qBHo1OxmGVj3_WnOyA
+https://youtu.be/gzNXittvyZ4?si=2y3tWfhy3NutaBFq
+https://youtu.be/nmqGGGdb5iA?si=b6XYnAHwdxkhrdwG
 
 
 
