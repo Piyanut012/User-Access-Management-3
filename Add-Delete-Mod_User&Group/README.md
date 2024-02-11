@@ -78,10 +78,10 @@ Options:
 ``` bash
 useradd -m -d /home/tony -s /bin/bash -u 3000 ironman
 ```
--m: สร้างโฮมไดเร็กทอรีสำหรับผู้ใช้ใหม่
--d /home/tony: กำหนดโฮมไดเร็กทอรีใหม่เป็น "/home/tony"
--s /bin/bash: กำหนด Shell ให้เป็น Bash (/bin/bash)
--u 3000 กำหนด user id เป็น 3000
+- -m: สร้างโฮมไดเร็กทอรีสำหรับผู้ใช้ใหม่
+- -d /home/tony: กำหนดโฮมไดเร็กทอรีใหม่เป็น "/home/tony"
+- -s /bin/bash: กำหนด Shell ให้เป็น Bash (/bin/bash)
+- -u 3000 กำหนด user id เป็น 3000
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/d85613d3-d5f6-4821-938a-3c44cb4f31c9)
 
 
