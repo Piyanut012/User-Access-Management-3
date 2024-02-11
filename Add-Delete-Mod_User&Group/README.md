@@ -215,6 +215,7 @@ usermod -c "Tony Stark" ironman
 usermod -L ironman
 ```
 ทดลองเข้าด้วย ironman
+
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/605e5331-a8b6-461c-94b2-f0e70a577005)
 
 ### -U unlock
