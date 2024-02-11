@@ -1,4 +1,4 @@
-# Useradd
+# User
  useradd เป็นคำสั่งในระบบปฏิบัติการ Linux ที่ใช้สำหรับการสร้างผู้ใช้ใหม่ในระบบ โดยมักใช้โดยผู้ดูแลระบบ (administrators) เพื่อเพิ่มผู้ใช้ใหม่ในระบบ เมื่อใช้คำสั่ง useradd จะสร้างบัญชีผู้ใช้ใหม่พร้อมกับการกำหนดค่าเริ่มต้นและสร้างโฮมไดเรกทอรีส่วนบุคคล (home directory) สำหรับผู้ใช้นั้นด้วย
 
 ข้อมูลผู้ใช้จะถูกเก็บในไฟล์ต่อไปนี้  
@@ -85,7 +85,7 @@ useradd -m -d /home/tony -s /bin/bash -u 3000 ironman
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/d85613d3-d5f6-4821-938a-3c44cb4f31c9)
 
 
-# Groupadd
+# Group
 ใน Linux มีกลุ่มอยู่ 2 ประเภท 
 * **Primary group** -> คือ กลุ่มที่ถูกตั้งเป็น default group ของ user เมื่อเข้าสู่ระบบ
 ซึ่ง group id จะอยู่ใน fieldที่ 4 ในไฟล์ etc/passwd  และ Directory, file ที่user สร้างจะมี group id นี้อยู่
@@ -159,9 +159,10 @@ gpasswd -d ironman guardians
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/f4ba0ab5-80ac-4a73-9a61-ca305bbd4cdd)
 
 
-# Usermod
+# User/Grop Modify
+## Usermod
 usermod เป็นคำสั่งในระบบปฏิบัติการ Linux ที่ใช้สำหรับการแก้ไขหรือปรับเปลี่ยนค่าและตัวแปรต่างๆ ของผู้ใช้ในระบบ โดยสามารถใช้คำสั่ง usermod เพื่อเปลี่ยนแปลงค่าต่างๆ ของผู้ใช้ เช่น ชื่อผู้ใช้, กลุ่มผู้ใช้, โฮมไดเรกทอรี, หรือตั้งค่ารหัสผ่าน เป็นต้น
-## OPTION
+### OPTIONS
 ``` bash
 Options:
       --badnames                do not check for bad names
@@ -199,16 +200,16 @@ Options:
       --extrausers              Use the extra users database
 
 ```
-# ตัวอย่างการใช้ usermod
+### ตัวอย่างการใช้ usermod
 
-## เพิ่ม comment -c
+### เพิ่ม comment -c
 ใช้คำสั่ง Usermod -c comment username
 ``` bash
 usermod -c "Tony Stark" ironman
 ```
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/93f97e4a-0b75-422a-84d9-a40fbfaad76a)
 
-## -L lock user
+### -L lock user
 ใช้คำสั่ง usermod -L username เช่น
 ``` bash
 usermod -L ironman
@@ -216,18 +217,43 @@ usermod -L ironman
 ทดลองเข้าด้วย ironman
 ![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/605e5331-a8b6-461c-94b2-f0e70a577005)
 
-## -U unlock
+### -U unlock
 ใช้คำสั่ง usermod -U username เช่น
 ``` bash
 usermod -U ironman
 ```
+## Groupmod
+groupmod เป็นคำสั่งในระบบปฏิบัติการ Linux ที่ใช้สำหรับการแก้ไขหรือปรับเปลี่ยนค่าและตัวแปรต่างๆ ของกลุ่มในระบบ โดยสามารถใช้คำสั่ง groupmod เพื่อเปลี่ยนแปลงค่าต่างๆ ของกลุ่ม เช่น ชื่อกลุ่มหลัก, ชื่อกลุ่มวัสดุ, หรือ GID (Group ID) เป็นต้น
 
+### OPTION
+``` bash
+Options:
+  -g, --gid GID                 change the group ID to GID
+  -h, --help                    display this help message and exit
+  -n, --new-name NEW_GROUP      change the name to NEW_GROUP
+  -o, --non-unique              allow to use a duplicate (non-unique) GID
+  -p, --password PASSWORD       change the password to this (encrypted)
+                                PASSWORD
+  -R, --root CHROOT_DIR         directory to chroot into
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+```
 
+### ตัวอย่างการใช้ groupmod
 
+### เปลี่ยนชื่อกลุ่ม -n
 
+ใช้คำสั่ง groupmod -n newgroupname oldgroupname เช่น
+``` bash
+groupmod -n newavengers avengers
+```
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/abe1684b-4bfc-4a97-8ff0-b335b2072550)
 
-
-
+### เปลี่ยน GID
+ใช้คำสั่ง groupmod -g GID groupname เช่น
+``` bash
+groupmod -n 2000 newavengers
+``
+![image](https://github.com/Piyanut012/User-Access-Management-3/assets/118871708/dd14600e-00d8-4977-9b73-fd6e270d13a9)
 
 
 
